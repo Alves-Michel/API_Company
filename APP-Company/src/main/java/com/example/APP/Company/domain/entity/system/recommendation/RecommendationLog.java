@@ -20,7 +20,7 @@ import java.util.UUID;
 public class RecommendationLog {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     @ManyToOne

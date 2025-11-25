@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,7 +22,7 @@ import java.util.UUID;
 public class AvailableHours {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     @ManyToOne
@@ -40,6 +39,7 @@ public class AvailableHours {
 
     private LocalTime endTime;
 
+    @Enumerated(EnumType.STRING)
     private StatusReserve status;
 
 }

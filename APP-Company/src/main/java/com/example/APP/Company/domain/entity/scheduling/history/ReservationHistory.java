@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -24,15 +23,17 @@ public class ReservationHistory {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "id_reservation", referencedColumnName = "id", nullable = false)
     private Reservation reservation;
 
+    @Enumerated(EnumType.STRING)
     private Status newStatus;
 
+    @Enumerated(EnumType.STRING)
     private OldStatus oldStatus;
 
     private LocalDateTime createdAt;

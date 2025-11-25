@@ -18,7 +18,7 @@ import java.util.UUID;
 public class PaymentGateway {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     private String provider;

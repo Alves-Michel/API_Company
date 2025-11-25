@@ -1,15 +1,12 @@
 package com.example.APP.Company.domain.entity.users.establishment_User;
 
 import com.example.APP.Company.domain.entity.users.establishment.Establishment;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import com.example.APP.Company.domain.entity.users.user_professional.UserProfessional;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.util.UUID;
 
@@ -22,11 +19,15 @@ import java.util.UUID;
 public class EstablishmentUser {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
+    @ManyToOne
+    @JoinColumn(name = "id_establishment", referencedColumnName = "id", nullable = false)
     private Establishment establishment;
 
+    @ManyToOne
+    @JoinColumn(name = "id_user_professional", referencedColumnName = "id", nullable = false)
     private UserProfessional userProfessional;
 }
 

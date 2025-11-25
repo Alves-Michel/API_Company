@@ -1,14 +1,10 @@
 package com.example.APP.Company.domain.entity.system.config;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
@@ -20,9 +16,10 @@ import java.time.LocalDateTime;
 @Table(name="tb_system_config")
 public class SystemConfig {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private String id;
 
+    @Column(name = "config_key")
     private String key;
     private String value;
     private LocalDateTime updatedAt;

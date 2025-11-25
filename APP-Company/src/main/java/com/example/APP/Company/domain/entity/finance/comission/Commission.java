@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Commission {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     @ManyToOne
@@ -36,6 +36,7 @@ public class Commission {
 
     private double commission_value;
 
+    @Enumerated(EnumType.STRING)
     private StatusCommission statusCommission;
 
     private LocalDateTime release_date;

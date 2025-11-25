@@ -19,7 +19,7 @@ import java.util.UUID;
 public class TaxRate {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     @Enumerated(EnumType.STRING)

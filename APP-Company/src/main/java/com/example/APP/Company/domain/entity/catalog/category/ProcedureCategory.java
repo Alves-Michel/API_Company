@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.util.UUID;
 
@@ -14,11 +13,11 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name="tb_reservation")
+@Table(name="tb_procedure_category")
 public class ProcedureCategory {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
 
     private String name;

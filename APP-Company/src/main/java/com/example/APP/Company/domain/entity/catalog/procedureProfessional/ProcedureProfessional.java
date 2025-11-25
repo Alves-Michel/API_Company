@@ -9,7 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,9 +19,10 @@ import org.springframework.data.annotation.Id;
 @Entity
 @Table(name="tb_procedure_professional")
 public class ProcedureProfessional {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy= GenerationType.UUID)
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "id_user_professional", referencedColumnName = "id", nullable = false)
