@@ -1,6 +1,9 @@
-package com.example.APP.Company.domain.entity.reservation;
+package com.example.APP.Company.domain.entity.scheduling.history;
 
 
+import com.example.APP.Company.domain.entity.scheduling.reservation.OldStatus;
+import com.example.APP.Company.domain.entity.scheduling.reservation.Reservation;
+import com.example.APP.Company.domain.entity.scheduling.reservation.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

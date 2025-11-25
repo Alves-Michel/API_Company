@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.professions;
+package com.example.APP.Company.domain.entity.users.professions;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

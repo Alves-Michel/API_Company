@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.payment;
+package com.example.APP.Company.domain.entity.finance.payment;
 
 public enum Channel {
     ONLINE,

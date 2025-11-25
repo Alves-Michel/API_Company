@@ -1,6 +1,6 @@
-package com.example.APP.Company.domain.entity.pricing;
+package com.example.APP.Company.domain.entity.catalog.pricing;
 
-import com.example.APP.Company.domain.entity.procedure.Procedure;
+import com.example.APP.Company.domain.entity.catalog.procedure.Procedure;
 import com.example.APP.Company.domain.entity.users.user_professional.UserProfessional;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

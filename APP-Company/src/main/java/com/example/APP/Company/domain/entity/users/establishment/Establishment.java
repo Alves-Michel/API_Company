@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.establishment;
+package com.example.APP.Company.domain.entity.users.establishment;
 
 import com.example.APP.Company.domain.entity.users.address.Address;
 import jakarta.persistence.*;

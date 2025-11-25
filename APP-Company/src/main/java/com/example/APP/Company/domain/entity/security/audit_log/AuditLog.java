@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.security.login_log;
+package com.example.APP.Company.domain.entity.security.audit_log;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,5 +32,5 @@ public class AuditLog {
 
     private LocalDateTime action_date;
 
-    
+
 }

@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.acess.role;
+package com.example.APP.Company.domain.entity.security.role;
 
 
 import jakarta.persistence.*;

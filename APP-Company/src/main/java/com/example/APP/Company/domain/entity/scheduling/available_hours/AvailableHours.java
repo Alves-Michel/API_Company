@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.available_hours;
+package com.example.APP.Company.domain.entity.scheduling.available_hours;
 
 import com.example.APP.Company.domain.entity.users.establishment.Establishment;
 import com.example.APP.Company.domain.entity.users.user_professional.StatusReserve;

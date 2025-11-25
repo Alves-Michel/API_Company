@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.reservation;
+package com.example.APP.Company.domain.entity.scheduling.reservation;
 
 import com.example.APP.Company.domain.entity.scheduling.available_hours.AvailableHours;
 import com.example.APP.Company.domain.entity.users.client.Client;

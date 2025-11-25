@@ -1,7 +1,7 @@
-package com.example.APP.Company.domain.entity.comission;
+package com.example.APP.Company.domain.entity.finance.comission;
 
 
-import com.example.APP.Company.domain.entity.payment.Payment;
+import com.example.APP.Company.domain.entity.finance.payment.Payment;
 import com.example.APP.Company.domain.entity.users.user_professional.UserProfessional;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

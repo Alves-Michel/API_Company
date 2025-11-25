@@ -1,6 +1,6 @@
-package com.example.APP.Company.domain.entity.procedure;
+package com.example.APP.Company.domain.entity.catalog.procedure;
 
-import com.example.APP.Company.domain.entity.category.ProcedureCategory;
+import com.example.APP.Company.domain.entity.catalog.category.ProcedureCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

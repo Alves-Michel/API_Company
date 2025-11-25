@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.address;
+package com.example.APP.Company.domain.entity.users.address;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;

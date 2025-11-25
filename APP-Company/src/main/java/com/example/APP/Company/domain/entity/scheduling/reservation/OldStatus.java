@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.reservation;
+package com.example.APP.Company.domain.entity.scheduling.reservation;
 
 public enum OldStatus {
     PENDING,

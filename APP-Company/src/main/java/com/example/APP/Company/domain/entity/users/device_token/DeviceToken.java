@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.device_token;
+package com.example.APP.Company.domain.entity.users.device_token;
 
 import com.example.APP.Company.domain.entity.users.user.User;
 import jakarta.persistence.*;

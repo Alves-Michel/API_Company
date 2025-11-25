@@ -1,6 +1,6 @@
-package com.example.APP.Company.domain.entity.establishment_User;
+package com.example.APP.Company.domain.entity.users.establishment_User;
 
-import com.example.APP.Company.domain.entity.establishment.Establishment;
+import com.example.APP.Company.domain.entity.users.establishment.Establishment;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

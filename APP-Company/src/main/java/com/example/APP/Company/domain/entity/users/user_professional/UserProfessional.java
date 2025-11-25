@@ -1,7 +1,7 @@
-package com.example.APP.Company.domain.entity.user_professional;
+package com.example.APP.Company.domain.entity.users.user_professional;
 
-import com.example.APP.Company.domain.entity.establishment.Establishment;
-import com.example.APP.Company.domain.entity.professions.Professions;
+import com.example.APP.Company.domain.entity.users.establishment.Establishment;
+import com.example.APP.Company.domain.entity.users.professions.Professions;
 import com.example.APP.Company.domain.entity.users.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

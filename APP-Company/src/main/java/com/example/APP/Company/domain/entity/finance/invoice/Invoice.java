@@ -1,6 +1,6 @@
-package com.example.APP.Company.domain.entity.invoice;
+package com.example.APP.Company.domain.entity.finance.invoice;
 
-import com.example.APP.Company.domain.entity.payment.Payment;
+import com.example.APP.Company.domain.entity.finance.payment.Payment;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
