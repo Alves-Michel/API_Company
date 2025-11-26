@@ -21,8 +21,7 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     @Autowired
     private SecurityFilter securityFilter;
@@ -34,6 +33,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers(
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html"
+                                ).permitAll()
                         .requestMatchers(HttpMethod.POST, "auth/login").permitAll()
 
                         .anyRequest().authenticated()

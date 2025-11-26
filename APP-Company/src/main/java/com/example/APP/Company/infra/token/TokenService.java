@@ -15,29 +15,28 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    @Value("${api.security.token.secret}")
+    @Value("${security.jwt.secret}")
     private String secret;
 
-    public String generateToken(User user) {
+    public String generateToken(User user){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
             return JWT.create()
                     .withIssuer("login-auth-api")
-                    .withSubject(user.getEmail()) // usa o email como identificador principal
-                    .withClaim("role", user.getRole() != null ? user.getRole().getName() : null)
-                    .withExpiresAt(this.generateExpirationDate())
+                    .withSubject(user.getUserName())
+                    .withClaim("role", user.getRole().toString())
+                    .withExpiresAt(generateExpirationDate())
                     .sign(algorithm);
 
-        } catch (JWTCreationException exception) {
-            throw new RuntimeException("Error while generating token: " + exception.getMessage());
+        } catch (JWTCreationException exception){
+            throw new RuntimeException("Error while generating token", exception);
         }
     }
 
-    public String validateToken(String token) {
+    public String validateToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-
             return JWT.require(algorithm)
                     .withIssuer("login-auth-api")
                     .build()
@@ -45,11 +44,11 @@ public class TokenService {
                     .getSubject();
 
         } catch (JWTVerificationException exception) {
-            return null; // token inválido ou expirado
+            return null;
         }
     }
 
-    private Instant generateExpirationDate() {
+    private Instant generateExpirationDate(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 }

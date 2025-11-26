@@ -21,6 +21,7 @@ public class SystemConfig {
 
     @Column(name = "config_key")
     private String key;
+    @Column(name = "config_value")
     private String value;
     private LocalDateTime updatedAt;
 
