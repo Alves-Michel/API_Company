@@ -38,7 +38,11 @@ public class SecurityConfig {
                                         "/swagger-ui/**",
                                         "/swagger-ui.html"
                                 ).permitAll()
-                        .requestMatchers(HttpMethod.POST, "auth/login").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/role/register").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/user/list").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/role/list").permitAll()
 
                         .anyRequest().authenticated()
                         ).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

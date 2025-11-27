@@ -5,12 +5,11 @@ import com.example.APP.Company.domain.entity.users.user.Genter;
 
 import java.util.Date;
 
-public record RegisterRequestDTO(
+public record  UserListDTO (
         String name,
         String cpf_cnpj,
         String email,
         String userName,
-        String password,
         String phoneNumber,
         Date birthDate,
         Genter genter,

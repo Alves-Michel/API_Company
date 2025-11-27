@@ -10,6 +10,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -52,15 +53,15 @@ public class User {
     @Pattern(regexp = "\\(\\d{2}\\)\\d{4,5}\\-\\d{4}")
     private String phoneNumber;
 
-    @NotBlank
-    private LocalDate birthDate;
+
+    private Date birthDate;
 
     @Enumerated(EnumType.STRING)
     private Genter genter;
 
 
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    //private LocalDateTime created_at;
+    //private LocalDateTime updated_at;
 
 
 
