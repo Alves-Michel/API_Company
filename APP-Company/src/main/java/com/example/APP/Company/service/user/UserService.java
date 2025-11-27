@@ -1,20 +1,16 @@
 package com.example.APP.Company.service.user;
 
-import com.example.APP.Company.domain.dto.security.RoleDTO;
-import com.example.APP.Company.domain.dto.user.ResponseDTO;
 import com.example.APP.Company.domain.dto.user.UserListDTO;
 import com.example.APP.Company.domain.entity.users.user.User;
 import com.example.APP.Company.domain.dto.user.RegisterRequestDTO;
 import com.example.APP.Company.repository.users.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,11 +37,13 @@ public class UserService {
             newUser.setBirthDate(body.birthDate());
             newUser.setGenter(body.genter());
             newUser.setRole(body.role());
+            newUser.setPosition(body.position());
 
             this.userRepository.save(newUser);
-            return ResponseEntity.ok(new ResponseDTO(newUser.getName(), newUser.getEmail()));
+            return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
+
         }
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>("User already exists", HttpStatus.CONFLICT);
     }
 
     public List<UserListDTO> finAllUser() {
@@ -58,7 +56,7 @@ public class UserService {
                         user.getPhoneNumber(),
                         user.getBirthDate(),
                         user.getGenter(),
-                        user.getRole()
+                        user.getPosition()
                 )).collect(Collectors.toList());
     }
 }

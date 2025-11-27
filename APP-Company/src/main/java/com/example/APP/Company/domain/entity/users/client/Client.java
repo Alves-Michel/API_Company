@@ -1,5 +1,8 @@
 package com.example.APP.Company.domain.entity.users.client;
 
+import com.example.APP.Company.domain.entity.users.user.Position;
+import com.example.APP.Company.domain.entity.users.user.Role;
+import com.example.APP.Company.repository.login.AuthUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -17,7 +20,17 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name="tb_client")
-public class Client {
+public class Client implements AuthUser {
+
+    @Override
+    public String getIdentifier() {
+        return this.mail;
+    }
+
+    @Override
+    public String getAuthority() {
+        return this.role.toString();
+    }
 
     @Id
     @GeneratedValue(strategy= GenerationType.UUID)
@@ -30,7 +43,11 @@ public class Client {
     @NotBlank
     private String password;
     @NotBlank
-    @Pattern(regexp = "\\(\\{2}\\)\\{4,5}\\-\\{4}")
+    @Pattern(regexp = "^\\(\\d{2}\\)\\d{4,5}-\\d{4}$")
     private String phone;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     private LocalDateTime created_at;
 }

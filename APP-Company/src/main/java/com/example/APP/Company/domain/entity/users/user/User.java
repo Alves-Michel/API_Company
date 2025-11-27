@@ -1,6 +1,6 @@
 package com.example.APP.Company.domain.entity.users.user;
 
-import com.example.APP.Company.domain.entity.security.role.Role;
+import com.example.APP.Company.repository.login.AuthUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -8,8 +8,6 @@ import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,7 +19,8 @@ import java.util.UUID;
 @Entity
 @Table(name="tb_user")
 
-public class User {
+public class User implements AuthUser {
+
 
 
     @Id
@@ -29,8 +28,8 @@ public class User {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "id_role", referencedColumnName = "id", nullable = false)
-    private Role role;
+    @JoinColumn(name = "id_position", referencedColumnName = "id", nullable = false)
+    private Position position;
 
     @NotBlank
     private String name;
@@ -59,10 +58,22 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Genter genter;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     //private LocalDateTime created_at;
     //private LocalDateTime updated_at;
 
+
+    @Override
+    public String getIdentifier() {
+        return this.userName;
+    }
+
+    @Override
+    public String getAuthority() {
+        return this.role.toString();
+    }
 
 
 }

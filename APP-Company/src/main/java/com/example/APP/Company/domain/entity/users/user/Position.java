@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.security.role;
+package com.example.APP.Company.domain.entity.users.user;
 
 
 import jakarta.persistence.*;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name="tb_role")
-public class Role {
+public class Position {
 
     @Id
     @GeneratedValue(strategy= GenerationType.UUID)

@@ -1,6 +1,6 @@
 package com.example.APP.Company.infra.security;
 
-import com.example.APP.Company.infra.token.TokenService;
+import com.example.APP.Company.service.token.TokenService;
 import com.example.APP.Company.repository.users.user.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
