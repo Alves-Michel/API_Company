@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/position")
 public class PositionController {
 
     @Autowired
     private PositionService positionService;
 
     @PostMapping("/register")
-    public ResponseEntity<PositionDTO> registerRole(@RequestBody PositionDTO body){
+    public ResponseEntity<PositionDTO> registerPosition(@RequestBody PositionDTO body){
         return positionService.createdRole(body);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<PositionDTO>> findAllRoles(){
-        var roles = positionService.finAllRoles();
-        return ResponseEntity.ok().body(roles);
+    public ResponseEntity<List<PositionDTO>> findAllPositions(){
+        var positions = positionService.finAllPositions();
+        return ResponseEntity.ok().body(positions);
     }
 }

@@ -33,7 +33,7 @@ public class PositionService {
 
     }
 
-    public List<PositionDTO> finAllRoles() {
+    public List<PositionDTO> finAllPositions() {
         return positionRepository.findAll().stream()
                 .map(role -> new PositionDTO(
                        role.getId(), role.getName()

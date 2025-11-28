@@ -44,6 +44,9 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST, "/client/register").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/client/list").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/user/list").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/user/search").permitAll()
+                                .requestMatchers(HttpMethod.PUT, "/user/update/{id}").permitAll()
+                                .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/position/list").permitAll()
 
                         .anyRequest().authenticated()
