@@ -31,17 +31,23 @@ public class SecurityFilter extends OncePerRequestFilter {
         var login = tokenService.validateToken(token);
 
         if(login != null){
-            var user = userRepository.findByUserName(login).orElseThrow(() -> new RuntimeException("Username not found"));
-            var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, authorities);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            var userOpt = userRepository.findByUserName(login);
+
+            if (userOpt.isPresent()) {
+                var user = userOpt.get();
+                var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_"));
+                var authentication = new UsernamePasswordAuthenticationToken(user, null, authorities);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
         filterChain.doFilter(request, response);
     }
 
-    private String recoverToken(HttpServletRequest request){
-        var authHeader = request.getHeader("Authorization");
-        if(authHeader ==null) return null;
-        return authHeader.replace("Bearer ", "");
+    private String recoverToken(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return null;
+        }
+        return authHeader.substring(7);
     }
 }

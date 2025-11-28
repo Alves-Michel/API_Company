@@ -43,6 +43,7 @@ public class User implements AuthUser {
     private String email;
 
     @NotBlank
+    @Column(name = "username")
     private String userName;
 
     @NotBlank

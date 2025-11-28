@@ -34,7 +34,7 @@ public class LoginAuth {
         AuthUser authUser;
 
         //TENTAR LOGIN DE USER
-        Optional<User> userOpt = userRepository.findByUserName(body.login());
+        Optional<User> userOpt = userRepository.findByLogin(body.login());
         if (userOpt.isPresent()) {
             User user = userOpt.get();
 

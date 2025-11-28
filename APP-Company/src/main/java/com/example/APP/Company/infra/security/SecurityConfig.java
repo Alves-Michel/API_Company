@@ -1,5 +1,6 @@
 package com.example.APP.Company.infra.security;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,29 +29,49 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers(
-                                        "/v3/api-docs/**",
-                                        "/swagger-ui/**",
-                                        "/swagger-ui.html"
-                                ).permitAll()
-                                .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/position/register").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/client/register").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/client/list").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/user/list").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/user/search").permitAll()
-                                .requestMatchers(HttpMethod.PUT, "/user/update/{id}").permitAll()
-                                .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/position/list").permitAll()
+                .authorizeHttpRequests(auth -> auth
 
+                        // ROTAS LIBERADAS
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+
+                        // CLIENT
+                        .requestMatchers(HttpMethod.GET, "/client/list").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/client/register").permitAll()
+                        // USERS
+                        .requestMatchers(HttpMethod.GET, "/user/list").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/user/search").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/user/update/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/position/register").permitAll()
+
+                        // DEFAULT
                         .anyRequest().authenticated()
-                        ).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+                )
+
+                // ERROS
+                .exceptionHandling(e -> e
+                        .authenticationEntryPoint((req, res, ex) -> {
+                            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            res.setContentType("application/json");
+                            res.getWriter().write("{\"error\":\"Not authenticated\"}");
+                        })
+                        .accessDeniedHandler((req, res, ex) -> {
+                            res.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            res.setContentType("application/json");
+                            res.getWriter().write("{\"error\":\"User not have access\"}");
+                        })
+                )
+
+                // FILTRO JWT ANTES DO FILTRO PADRÃO
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
@@ -60,8 +81,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManagerBean(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public AuthenticationManager authenticationManagerBean(AuthenticationConfiguration config)
+            throws Exception {
+        return config.getAuthenticationManager();
     }
 
 
