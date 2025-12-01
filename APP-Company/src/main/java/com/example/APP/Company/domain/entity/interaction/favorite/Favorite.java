@@ -20,7 +20,7 @@ import java.util.UUID;
 public class Favorite {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
 
     @ManyToOne

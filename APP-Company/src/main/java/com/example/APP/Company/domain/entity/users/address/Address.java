@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
 
     private String street;

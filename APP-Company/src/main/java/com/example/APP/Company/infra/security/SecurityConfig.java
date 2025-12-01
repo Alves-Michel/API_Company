@@ -1,5 +1,7 @@
 package com.example.APP.Company.infra.security;
 
+import com.example.APP.Company.infra.customError.CustomAccessDeniedHandler;
+import com.example.APP.Company.infra.customError.CustomAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,39 +23,47 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
-
-
     @Autowired
     private SecurityFilter securityFilter;
+
+    @Autowired
+    private  CustomAuthenticationEntryPoint authenticationEntryPoint;
+
+    @Autowired
+    private  CustomAccessDeniedHandler accessDeniedHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
+                .exceptionHandling(e -> e
+                        .authenticationEntryPoint(authenticationEntryPoint)
+                        .accessDeniedHandler(accessDeniedHandler)
+                )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers(
-                                        "/v3/api-docs/**",
-                                        "/swagger-ui/**",
-                                        "/swagger-ui.html"
-                                ).permitAll()
-                                .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/position/register").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/client/register").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/client/list").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/user/list").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/user/search").permitAll()
-                                .requestMatchers(HttpMethod.PUT, "/user/update/{id}").permitAll()
-                                .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/position/list").permitAll()
-
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/position/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user/register").hasAnyRole("USER    ", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/client/register").hasAnyRole("CLIENT", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/client/list").hasAnyRole("CLIENT", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/user/list").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/search").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/user/update/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/position/list").permitAll()
                         .anyRequest().authenticated()
-                        ).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+                )
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
+        return http.build();
+}
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

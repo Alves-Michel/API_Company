@@ -18,7 +18,7 @@ import java.util.UUID;
 @Table(name="tb_financial_statement")
 public class FinancialStatement {
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
 
     @ManyToOne

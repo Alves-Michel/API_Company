@@ -24,7 +24,7 @@ public class User implements AuthUser {
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
 
     @ManyToOne
@@ -40,9 +40,11 @@ public class User implements AuthUser {
 
     @NotBlank
     @Email
+    @Column(name = "mail")
     private String email;
 
     @NotBlank
+    @Column(name = "user_name")
     private String userName;
 
     @NotBlank
@@ -50,12 +52,14 @@ public class User implements AuthUser {
 
     @NotBlank
     @Pattern(regexp = "\\(\\d{2}\\)\\d{4,5}\\-\\d{4}")
+    @Column(name = "phone")
     private String phoneNumber;
 
-
+    @Column(name = "date_birthday")
     private Date birthDate;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
     private Genter genter;
 
     @Enumerated(EnumType.STRING)

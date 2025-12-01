@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Table(name="tb_system_config")
 public class SystemConfig {
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private String id;
 
     @Column(name = "config_key")

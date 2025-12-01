@@ -15,11 +15,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name="tb_role")
+@Table(name="tb_position")
 public class Position {
 
+
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(length = 36, columnDefinition = "CHAR(36)")
     private UUID id;
 
     @NotBlank

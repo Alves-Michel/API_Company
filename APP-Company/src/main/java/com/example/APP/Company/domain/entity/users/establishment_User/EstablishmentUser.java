@@ -19,7 +19,7 @@ import java.util.UUID;
 public class EstablishmentUser {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
 
     @ManyToOne

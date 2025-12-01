@@ -1,6 +1,7 @@
 package com.example.APP.Company.controller.user;
 
-import com.example.APP.Company.domain.dto.user.PositionDTO;
+import com.example.APP.Company.domain.dto.user.PositionResponseDTO;
+import com.example.APP.Company.domain.dto.user.PositionRequestDTO;
 import com.example.APP.Company.service.user.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +17,13 @@ public class PositionController {
     private PositionService positionService;
 
     @PostMapping("/register")
-    public ResponseEntity<PositionDTO> registerPosition(@RequestBody PositionDTO body){
-        return positionService.createdRole(body);
+    public ResponseEntity<PositionResponseDTO> registerPosition(@RequestBody PositionRequestDTO body){
+        var created = positionService.createdRole(body);
+        return ResponseEntity.ok(new PositionResponseDTO(created));
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<PositionDTO>> findAllPositions(){
+    public ResponseEntity<List<PositionResponseDTO>> findAllPositions(){
         var positions = positionService.finAllPositions();
         return ResponseEntity.ok().body(positions);
     }
