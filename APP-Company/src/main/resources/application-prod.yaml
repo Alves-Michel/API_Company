@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: APP-Company
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_agenzly
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: validate
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        type:
+          preferred_uuid_jdbc_type: CHAR
+
+  security:
+    jwt:
+      secret: ${JWT_SECRET:my-super-secret-key}
+
+  docker:
+    compose:
+      enabled: false
+
+
+

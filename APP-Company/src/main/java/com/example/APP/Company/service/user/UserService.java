@@ -1,8 +1,8 @@
 package com.example.APP.Company.service.user;
 
-import com.example.APP.Company.domain.dto.user.UserListDTO;
+import com.example.APP.Company.domain.dto.user.providers.UserListDTO;
 import com.example.APP.Company.domain.entity.users.user.User;
-import com.example.APP.Company.domain.dto.user.RegisterRequestDTO;
+import com.example.APP.Company.domain.dto.user.providers.RegisterRequestDTO;
 import com.example.APP.Company.repository.users.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

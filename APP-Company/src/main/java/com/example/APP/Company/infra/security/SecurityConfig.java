@@ -49,15 +49,30 @@ public class SecurityConfig {
                                 "/swagger-ui.html"
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/position/register").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/user/register").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/client/register").hasAnyRole("CLIENT", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/client/list").hasAnyRole("CLIENT", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/user/list").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/user/search").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/user/update/{id}").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/position/list").hasAnyRole("USER", "ADMIN")
+
+                        //position
+                        .requestMatchers(HttpMethod.POST, "/position/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/position/list").permitAll()//.hasAnyRole("USER", "ADMIN")
+
+                        //user
+                        .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/list").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/user/search").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/user/update/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
+
+                        //client
+                        .requestMatchers(HttpMethod.POST, "/client/register").permitAll()//.hasAnyRole("CLIENT", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/client/list").permitAll()//.hasAnyRole("CLIENT", "ADMIN")
+
+                        //establishment
+                        .requestMatchers(HttpMethod.POST, "/establishment/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/establishment/list").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/establishment/search").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/establishment/update/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/establishment/delete/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
+
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

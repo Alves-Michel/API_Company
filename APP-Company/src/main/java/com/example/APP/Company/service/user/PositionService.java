@@ -1,7 +1,7 @@
 package com.example.APP.Company.service.user;
 
-import com.example.APP.Company.domain.dto.user.PositionResponseDTO;
-import com.example.APP.Company.domain.dto.user.PositionRequestDTO;
+import com.example.APP.Company.domain.dto.user.position.PositionResponseDTO;
+import com.example.APP.Company.domain.dto.user.position.PositionRequestDTO;
 import com.example.APP.Company.domain.entity.users.user.Position;
 import com.example.APP.Company.repository.users.user.PositionRepository;
 import org.springframework.beans.factory.annotation.Autowired;

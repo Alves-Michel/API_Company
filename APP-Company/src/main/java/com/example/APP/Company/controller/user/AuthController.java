@@ -1,8 +1,10 @@
 package com.example.APP.Company.controller.user;
 
-import com.example.APP.Company.domain.dto.user.LoginRequestDTO;
-import com.example.APP.Company.domain.dto.user.ResponseDTO;
+import com.example.APP.Company.domain.dto.user.login.LoginRequestDTO;
+import com.example.APP.Company.domain.dto.user.login.ResponseDTO;
+import com.example.APP.Company.repository.login.AuthUser;
 import com.example.APP.Company.service.login.LoginAuth;
+import com.example.APP.Company.service.token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -21,19 +25,9 @@ public class AuthController {
     @Autowired
     private  LoginAuth loginAuth;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequestDTO body){
-        UsernamePasswordAuthenticationToken authToken =
-                new UsernamePasswordAuthenticationToken(body.login(), body.password());
-
-        Authentication authentication = authenticationManager.authenticate(authToken);
-
-        // se chegou aqui, senha está correta
-        User user = (User) authentication.getPrincipal();
-
-        return ResponseEntity.ok("login ok!");
+    public ResponseEntity<ResponseDTO> login(@RequestBody LoginRequestDTO body){
+        ResponseDTO responseDTO = loginAuth.login(body);
+        return ResponseEntity.ok(responseDTO);
     }
 }

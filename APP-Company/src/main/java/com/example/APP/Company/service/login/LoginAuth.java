@@ -1,7 +1,7 @@
 package com.example.APP.Company.service.login;
 
-import com.example.APP.Company.domain.dto.user.LoginRequestDTO;
-import com.example.APP.Company.domain.dto.user.ResponseDTO;
+import com.example.APP.Company.domain.dto.user.login.LoginRequestDTO;
+import com.example.APP.Company.domain.dto.user.login.ResponseDTO;
 import com.example.APP.Company.domain.entity.users.client.Client;
 import com.example.APP.Company.domain.entity.users.user.User;
 import com.example.APP.Company.repository.login.AuthUser;

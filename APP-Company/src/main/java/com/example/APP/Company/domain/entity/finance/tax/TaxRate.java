@@ -1,6 +1,6 @@
 package com.example.APP.Company.domain.entity.finance.tax;
 
-import com.example.APP.Company.domain.entity.users.address.Uf;
+import com.example.APP.Company.domain.entity.users.establishment.Uf;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

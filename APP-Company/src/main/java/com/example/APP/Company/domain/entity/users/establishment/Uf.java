@@ -1,7 +1,9 @@
-package com.example.APP.Company.domain.entity.users.address;
+package com.example.APP.Company.domain.entity.users.establishment;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
+import java.text.Normalizer;
 
 public enum Uf {
 
@@ -49,18 +51,30 @@ public enum Uf {
     }
 
     @JsonCreator
-    public static Uf fromJson(String value){
-        if(value == null){
-            return null;
-        }
-        String v = value.trim().toUpperCase();
-        for (Uf uf : Uf.values()){
-            if(uf.getName().equals(v)){
+    public static Uf fromJson(String value) {
+        if (value == null) return null;
+
+        // remove acentos, espaços extras e transforma em maiúscula
+        String normalized = normalize(value);
+
+        for (Uf uf : Uf.values()) {
+            String code = normalize(uf.name());           // SP
+            String name = normalize(uf.getName());        // São Paulo -> SAO PAULO
+
+            if (normalized.equals(code) || normalized.equals(name)) {
                 return uf;
             }
         }
-        throw new IllegalArgumentException("Invalid UF value: " + value);
 
+        throw new IllegalArgumentException("Invalid UF value: " + value);
+    }
+
+    private static String normalize(String input) {
+        // remove acentos
+        String temp = Normalizer.normalize(input, Normalizer.Form.NFD);
+        temp = temp.replaceAll("\\p{M}", ""); // remove diacríticos
+        temp = temp.toUpperCase().trim();      // maiúscula e trim
+        return temp;
     }
 
     @JsonValue

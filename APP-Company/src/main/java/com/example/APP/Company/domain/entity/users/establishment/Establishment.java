@@ -1,6 +1,5 @@
 package com.example.APP.Company.domain.entity.users.establishment;
 
-import com.example.APP.Company.domain.entity.users.address.Address;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -26,11 +25,6 @@ public class Establishment {
     private UUID id;
 
     @NotBlank
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
-
-    @NotBlank
     private String name;
 
     @NotBlank
@@ -44,6 +38,19 @@ public class Establishment {
     @NotBlank
     @Email
     private String mail;
+
+    private String street;
+    private String complement;
+    private String neighborhood;
+    private String number;
+    private String city;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length =  2)
+    private Uf uf;
+
+    @Pattern(regexp = "\\d{5}\\-\\d{3}", message = "CEP invalid")
+    private String cep;
 
     private LocalDateTime created_at;
 

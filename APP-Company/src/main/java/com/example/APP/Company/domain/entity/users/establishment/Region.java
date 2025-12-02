@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.entity.users.address;
+package com.example.APP.Company.domain.entity.users.establishment;
 
 public enum Region {
     NORTE,

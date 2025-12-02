@@ -1,6 +1,7 @@
 package com.example.APP.Company.infra.security;
 
 import com.example.APP.Company.domain.entity.users.user.User;
+import com.example.APP.Company.repository.login.AuthUser;
 import com.example.APP.Company.repository.users.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

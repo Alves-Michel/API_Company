@@ -1,4 +1,4 @@
-package com.example.APP.Company.domain.dto.user;
+package com.example.APP.Company.domain.dto.user.position;
 
 import com.example.APP.Company.domain.entity.users.user.Position;
 
