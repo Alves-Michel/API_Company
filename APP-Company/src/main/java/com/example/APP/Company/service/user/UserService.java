@@ -33,7 +33,7 @@ public class UserService {
             newUser.setName(body.name());
             newUser.setCpf_cnpj(body.cpf_cnpj());
             newUser.setEmail(body.email());
-            newUser.setUserName(body.name());
+            newUser.setUserName(body.userName());
             newUser.setPassword(passwordEncoder.encode(body.password()));
             newUser.setPhoneNumber(body.phoneNumber());
             newUser.setBirthDate(body.birthDate());

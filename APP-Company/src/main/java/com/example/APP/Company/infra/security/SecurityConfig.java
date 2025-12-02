@@ -49,21 +49,27 @@ public class SecurityConfig {
                                 "/swagger-ui.html"
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/position/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user/register").hasAnyRole("USER    ", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/position/register").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/user/register").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/client/register").hasAnyRole("CLIENT", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/client/list").hasAnyRole("CLIENT", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/user/list").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/user/search").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/user/update/{id}").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/position/list").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/list").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/user/search").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/user/update/{id}").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/user/delete/{id}").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/position/list").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
 }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
+            throws Exception {
+        return config.getAuthenticationManager();
+    }
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
