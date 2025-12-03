@@ -1,6 +1,6 @@
 package com.example.APP.Company.domain.entity.users.user;
 
-public enum Genter {
+public enum Gender {
     MALE,
     FEMALE,
     OTHER;

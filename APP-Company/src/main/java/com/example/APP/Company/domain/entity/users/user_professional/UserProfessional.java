@@ -24,17 +24,17 @@ public class UserProfessional {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "id_user", referencedColumnName = "id", nullable = false)
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "id_professions", referencedColumnName = "id", nullable = false)
-    private Professions profession;
+    private Professions professionId;
 
     @ManyToOne
     @JoinColumn(name = "id_establishment", referencedColumnName = "id", nullable = false)
-    private Establishment establishment;
+    private Establishment establishmentId;
 
     private String bio;
 

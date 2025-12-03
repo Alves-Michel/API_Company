@@ -1,7 +1,6 @@
 package com.example.APP.Company.domain.dto.user.providers;
 
-import com.example.APP.Company.domain.entity.users.user.Position;
-import com.example.APP.Company.domain.entity.users.user.Genter;
+import com.example.APP.Company.domain.entity.users.user.Gender;
 import com.example.APP.Company.domain.entity.users.user.Role;
 
 import java.util.Date;
@@ -14,8 +13,9 @@ public record RegisterRequestDTO(
         String password,
         String phoneNumber,
         Date birthDate,
-        Genter genter,
+        Gender gender,
         Role role,
-        Position position
+        ProfessionalDTO professional
+
 ) {
 }

@@ -1,7 +1,6 @@
 package com.example.APP.Company.domain.dto.user.providers;
 
-import com.example.APP.Company.domain.entity.users.user.Position;
-import com.example.APP.Company.domain.entity.users.user.Genter;
+import com.example.APP.Company.domain.entity.users.user.Gender;
 
 import java.util.Date;
 import java.util.UUID;
@@ -14,7 +13,6 @@ public record  UserListDTO (
         String userName,
         String phoneNumber,
         Date birthDate,
-        Genter genter,
-        Position position
+        Gender gender
 ) {
 }

@@ -1,5 +1,6 @@
 package com.example.APP.Company.domain.entity.users.user;
 
+import com.example.APP.Company.domain.entity.users.user_professional.UserProfessional;
 import com.example.APP.Company.repository.login.AuthUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -21,15 +22,9 @@ import java.util.UUID;
 
 public class User implements AuthUser {
 
-
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
-
-    @ManyToOne
-    @JoinColumn(name = "id_position", referencedColumnName = "id", nullable = false)
-    private Position position;
 
     @NotBlank
     private String name;
@@ -60,10 +55,15 @@ public class User implements AuthUser {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
-    private Genter genter;
+    private Gender gender;
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user_professional")
+    private UserProfessional userProfessional;
 
     //private LocalDateTime created_at;
     //private LocalDateTime updated_at;

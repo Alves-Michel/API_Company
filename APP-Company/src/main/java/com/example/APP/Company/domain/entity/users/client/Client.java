@@ -1,6 +1,5 @@
 package com.example.APP.Company.domain.entity.users.client;
 
-import com.example.APP.Company.domain.entity.users.user.Position;
 import com.example.APP.Company.domain.entity.users.user.Role;
 import com.example.APP.Company.repository.login.AuthUser;
 import jakarta.persistence.*;
