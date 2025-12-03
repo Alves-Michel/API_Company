@@ -72,6 +72,13 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/establishment/update/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/establishment/delete/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
 
+                        //professions
+                        .requestMatchers(HttpMethod.POST, "/professions/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/professions/list").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/professions/search").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/professions/update/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/professions/delete/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
+
 
                         .anyRequest().authenticated()
                 )

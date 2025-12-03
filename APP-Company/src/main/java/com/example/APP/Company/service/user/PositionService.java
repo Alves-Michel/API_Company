@@ -17,10 +17,10 @@ public class PositionService {
     @Autowired
     private PositionRepository positionRepository;
 
-    public Position createdRole(PositionRequestDTO body) {
-        Optional<Position> role = positionRepository.findByName(body.name());
+    public Position createdPosition(PositionRequestDTO body) {
+        Optional<Position> position = positionRepository.findByName(body.name());
 
-        if (role.isPresent()) {
+        if (position.isPresent()) {
             throw new RuntimeException("Position already exists");
         }
 
@@ -31,8 +31,8 @@ public class PositionService {
 
     public List<PositionResponseDTO> finAllPositions() {
         return positionRepository.findAll().stream()
-                .map(role -> new PositionResponseDTO(
-                       role.getId(), role.getName()
+                .map(position -> new PositionResponseDTO(
+                       position.getId(), position.getName()
                 )).collect(Collectors.toList());
     }
 }

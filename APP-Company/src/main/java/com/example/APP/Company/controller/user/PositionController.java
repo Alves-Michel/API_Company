@@ -18,7 +18,7 @@ public class PositionController {
 
     @PostMapping("/register")
     public ResponseEntity<PositionResponseDTO> registerPosition(@RequestBody PositionRequestDTO body){
-        var created = positionService.createdRole(body);
+        var created = positionService.createdPosition(body);
         return ResponseEntity.ok(new PositionResponseDTO(created));
     }
 
