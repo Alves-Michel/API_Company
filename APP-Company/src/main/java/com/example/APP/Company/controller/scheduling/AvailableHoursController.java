@@ -49,7 +49,7 @@ public class AvailableHoursController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteAvailableHours(@PathVariable("id")UUID id){
         availableHoursService.deleteAvailableHours(id);
         return ResponseEntity.ok().build();

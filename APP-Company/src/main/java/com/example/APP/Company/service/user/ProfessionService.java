@@ -24,7 +24,7 @@ public class ProfessionService {
     public ResponseEntity createProfession(ProfessionsRegisterDTO body){
         Optional<Professions> professions = professionsRepository.findByName(body.name());
         if (professions.isPresent()) {
-            throw new RuntimeException("Profession already exists");
+            throw new ResponseStatusException(HttpStatus.CONFLICT,"Profession already exists");
         }
 
         Professions newProfession = new Professions();
