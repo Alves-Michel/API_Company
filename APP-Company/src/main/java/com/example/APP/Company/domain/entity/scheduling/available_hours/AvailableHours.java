@@ -26,20 +26,22 @@ public class AvailableHours {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "id_establishment", referencedColumnName = "id", nullable = false)
-    private Establishment establishment;
-
-    @ManyToOne
     @JoinColumn(name = "id_user_professional",  referencedColumnName = "id", nullable = false)
     private UserProfessional userProfessional;
 
-    private LocalDate date;
+    @Enumerated(EnumType.STRING)
+    private Weekday weekday;
 
-    private LocalTime startTime;
+    private LocalTime startHour;
 
-    private LocalTime endTime;
+    private LocalTime endHour;
+
+    private int serviceDuration;
+
+    private int breakDuration;
 
     @Enumerated(EnumType.STRING)
-    private StatusReserve status;
+    private StatusHours  statusHours;
+
 
 }
