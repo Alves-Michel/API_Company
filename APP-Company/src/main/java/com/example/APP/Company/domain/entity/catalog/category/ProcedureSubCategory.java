@@ -13,12 +13,16 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name="tb_procedure_category")
-public class ProcedureCategory {
+@Table(name="tb_procedure_subcategory")
+public class ProcedureSubCategory {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_procedure_category", referencedColumnName = "id")
+    private ProcedureCategory procedureCategory;
 
     private String name;
 

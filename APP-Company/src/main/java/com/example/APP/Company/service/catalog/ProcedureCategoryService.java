@@ -23,7 +23,7 @@ public class ProcedureCategoryService {
     @Autowired
     private ProcedureCategoryRepository procedureCategoryRepository;
 
-    public ResponseEntity createProceduryCategory(ProcedureCategoryRegisterDTO body){
+    public ResponseEntity createProcedureCategory(ProcedureCategoryRegisterDTO body){
         Optional<ProcedureCategory> category = procedureCategoryRepository.findByNameContainingIgnoreCase(body.name());
         if(category.isPresent()){
             throw new ResponseStatusException(HttpStatus.CONFLICT,"This name is already in use");
@@ -31,6 +31,7 @@ public class ProcedureCategoryService {
 
         ProcedureCategory procedureCategory = new ProcedureCategory();
         procedureCategory.setName(body.name());
+        procedureCategory.setActive(body.active());
 
         this.procedureCategoryRepository.save(procedureCategory);
         return new ResponseEntity( "Create completed successfully",HttpStatus.CREATED);
@@ -41,7 +42,8 @@ public class ProcedureCategoryService {
         return procedureCategoryRepository.findAll().stream()
                 .map(procedureCategory -> new ProcedureCategoryResponseDTO(
                         procedureCategory.getId(),
-                        procedureCategory.getName()
+                        procedureCategory.getName(),
+                        procedureCategory.isActive()
                 )).collect(Collectors.toList());
     }
 
@@ -54,7 +56,8 @@ public class ProcedureCategoryService {
 
         return categories.stream().map(procedureCategory -> new ProcedureCategoryResponseDTO(
                 procedureCategory.getId(),
-                procedureCategory.getName()
+                procedureCategory.getName(),
+                procedureCategory.isActive()
         )).toList();
 
     }
@@ -64,8 +67,10 @@ public class ProcedureCategoryService {
         var old = procedureCategoryRepository.findById(id);
         if(old.isPresent()){
             var oldName = old.get();
-            Optional.ofNullable(oldName).ifPresent(oldName1 -> oldName1.setName(body.name()));
-            procedureCategoryRepository.save(old.get());
+            Optional.ofNullable(body.name()).ifPresent(oldName::setName);
+            Optional.ofNullable(body.active()).ifPresent(oldName::setActive);
+
+            procedureCategoryRepository.save(oldName);
             return new ResponseEntity("Update realized with successfully", HttpStatus.OK);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No such procedure category not found");

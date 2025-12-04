@@ -15,14 +15,14 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/procedureCategory")
-public class ProcedureCategory {
+public class ProcedureCategoryController {
 
     @Autowired
     private ProcedureCategoryService procedureCategoryService;
 
     @PostMapping("/register")
     public ResponseEntity<String> registerProcedureCategory(@RequestBody ProcedureCategoryRegisterDTO body){
-        return procedureCategoryService.createProceduryCategory(body);
+        return procedureCategoryService.createProcedureCategory(body);
     }
 
     @GetMapping("/list")

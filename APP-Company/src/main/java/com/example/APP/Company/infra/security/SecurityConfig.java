@@ -93,6 +93,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/procedureCategory/update/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/procedureCategory/delete/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
 
+                        //Procedure SubCategory
+                        .requestMatchers(HttpMethod.POST, "/procedureSubCategory/register").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/procedureSubCategory/list").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/procedureSubCategory/search").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/procedureSubCategory/update/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/procedureSubCategory/delete/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
