@@ -1,6 +1,7 @@
 package com.example.APP.Company.domain.entity.catalog.pricing;
 
 import com.example.APP.Company.domain.entity.catalog.procedure.Procedure;
+import com.example.APP.Company.domain.entity.users.establishment.Establishment;
 import com.example.APP.Company.domain.entity.users.user_professional.UserProfessional;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -32,16 +34,16 @@ public class Pricing {
     @JoinColumn(name = "id_user_professional", referencedColumnName = "id", nullable = false)
     private UserProfessional userProfessional;
 
-    private double price;
+    private BigDecimal price;
 
     private int durationMinutes;
 
-    private double finalPrice;
+    private BigDecimal finalPrice;
 
-    private double discountPercent;
+    private BigDecimal discountPercent;
 
-    private LocalTime validFrom;
-    private LocalTime validTo;
+    private LocalDateTime validFrom;
+    private LocalDateTime validTo;
 
     private Boolean active;
 

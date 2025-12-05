@@ -58,7 +58,6 @@ public class AvailableHoursService {
         newAvailableHours.setServiceDuration(body.serviceDuration());
         newAvailableHours.setBreakDuration(body.breakDuration());
         newAvailableHours.setStatusHours(body.statusHours());
-        availableHoursRepository.save(newAvailableHours);
 
         this.availableHoursRepository.save(newAvailableHours);
         return new ResponseEntity("Available hours created", HttpStatus.CREATED);
