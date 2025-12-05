@@ -63,7 +63,7 @@ public class ProcedureCategoryService {
     }
 
 
-    public ResponseEntity updateProceduryCategory(UUID id, ProcedureCategoryRegisterDTO body){
+    public ResponseEntity updateProcedureCategory(UUID id, ProcedureCategoryRegisterDTO body){
         var old = procedureCategoryRepository.findById(id);
         if(old.isPresent()){
             var oldName = old.get();
@@ -77,7 +77,7 @@ public class ProcedureCategoryService {
         }
     }
 
-    public ResponseEntity deleteProceduryCategory(UUID id){
+    public ResponseEntity deleteProcedureCategory(UUID id){
         try {
                var exists = procedureCategoryRepository.existsById(id);
                if(!exists) {

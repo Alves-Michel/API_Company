@@ -32,7 +32,7 @@ public class ProcedureCategoryController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<ProcedureCategoryResponseDTO>> searchAvailableHours(@RequestParam String name){
+    public ResponseEntity<List<ProcedureCategoryResponseDTO>> searchCategory(@RequestParam String name){
 
         if (name == null || name.isEmpty()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Name is null or empty");
@@ -42,15 +42,15 @@ public class ProcedureCategoryController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Void> updateAvailableHours(@PathVariable("id") UUID id,
+    public ResponseEntity<Void> updateCategory(@PathVariable("id") UUID id,
                                                      @RequestBody ProcedureCategoryRegisterDTO body){
-        procedureCategoryService.updateProceduryCategory(id, body);
+        procedureCategoryService.updateProcedureCategory(id, body);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteAvailableHours(@PathVariable("id")UUID id){
-        procedureCategoryService.deleteProceduryCategory(id);
+    public ResponseEntity deleteCategory(@PathVariable("id")UUID id){
+        procedureCategoryService.deleteProcedureCategory(id);
         return ResponseEntity.ok().build();
     }
 }
