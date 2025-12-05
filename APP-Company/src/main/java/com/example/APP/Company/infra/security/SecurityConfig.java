@@ -106,7 +106,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/procedure/search").permitAll()//.hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/procedure/update/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/procedure/delete/{id}").permitAll()//.hasAnyRole("USER", "ADMIN")
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()//authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 

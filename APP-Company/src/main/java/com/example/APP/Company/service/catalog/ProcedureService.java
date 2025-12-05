@@ -34,7 +34,7 @@ public class ProcedureService {
     public ResponseEntity createProcedure(ProcedureRegisterDTO body){
 
         ProcedureSubCategory subCategory = procedureSubCategoryRepository.findById(body.procedureSubCategoryId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Procedure Category Not Found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Procedure SubCategory Not Found"));
 
         Optional<Procedure> procedure = procedureRepository.findByNameContainingIgnoreCase(body.name());
         if(procedure.isPresent()){
